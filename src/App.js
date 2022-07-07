@@ -4,11 +4,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home, Products, Product, Error, Cart } from './Component';
 import Navbar from './Navbar';
 import Login from "./Login";
-import InputToken from "./input";
+import InputToken from "./allItems";
 import UpItem from './UpItem';
 import UserContext from "../src/Context";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import DelItem from './delItem';
 
 function App() {
   const [user, setUser] = useState();
@@ -59,8 +60,11 @@ function App() {
               <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/" element={<Home />} />
 
+
               <Route path="/up" element={<UpItem />} />
               <Route path="/allItems" element={<InputToken />} />
+              <Route path="/del" element={<DelItem />} />
+
 
 
               <Route path="/category" element={<Home />} />
@@ -71,7 +75,9 @@ function App() {
             </>
           )}
         </Routes>
-        <Cart cartItems={cartItems} add={add} remove={remove} />
+        {user ? (
+          <Cart cartItems={cartItems} add={add} remove={remove} />
+        ) : null}
 
 
       </div>

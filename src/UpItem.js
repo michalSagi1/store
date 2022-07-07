@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./upitem.css";
+import UserContext from "../src/Context";
+
+
 
 export default function UpItem() {
+    const { user } = useContext(UserContext);
 
     const [item, setItem] = useState([])
     const [message, setMessage] = useState(false)
@@ -16,6 +20,8 @@ export default function UpItem() {
         console.log(e.target.id.value);
 
         console.log(e.target.name.value)
+        console.log(e.target.img.value)
+
 
 
         //     axios.get('http://localhost:3001/api/items/', {
@@ -39,6 +45,8 @@ export default function UpItem() {
                 description: e.target.description.value,
                 category: e.target.category.value,
                 inStock: e.target.inStock.value,
+                img: e.target.img.value,
+
             })
         };
         const res = await fetch('http://localhost:3001/api/items/addItem', requestOptions)
@@ -56,60 +64,64 @@ export default function UpItem() {
     // }
     // }, [])
     // }
+    if (!user.admin) return "no admin"
+    else {
 
-    return (
+        return (
 
-        <>
-            <form onSubmit={upItem1}>
-                <input
-                    type="text"
-                    name="id"
-                    placeholder="id..."
-                    className="inputLogin1"
-                />
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="name..."
-                    className="inputLogin1"
-                />
+            <div className="up">
+                <form onSubmit={upItem1}>
+                    <input
+                        type="text"
+                        name="id"
+                        placeholder="id..."
+                        className="inputLogin1"
+                    />
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="name..."
+                        className="inputLogin1"
+                    />
 
-                <input
-                    type="text"
-                    name="price"
-                    placeholder="price..."
-                    className="inputLogin1"
-                />
-                <textarea col="30" row="30"
-                    type="text"
-                    name="description"
-                    placeholder="description..."
-                    className="inputLogin1"
-                />
-                <input
-                    type="text"
-                    name="category"
-                    placeholder="category..."
-                    className="inputLogin1"
-                />
-                <input
-                    type="text"
-                    name="inStock"
-                    placeholder="inStock..."
-                    className="inputLogin1"
-                />
-                <input
-                    type="text"
-                    name="img"
-                    placeholder="img..."
-                    className="inputLogin1"
-                />
+                    <input
+                        type="text"
+                        name="price"
+                        placeholder="price..."
+                        className="inputLogin1"
+                    />
+                    <textarea
+                        type="text"
+                        name="description"
+                        placeholder="description..."
+                        className="inputLogin2"
+                    />
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="category..."
+                        className="inputLogin1"
+                    />
+                    <input
+                        type="text"
+                        name="inStock"
+                        placeholder="inStock..."
+                        className="inputLogin1"
+                    />
+                    <input
+                        type="text"
+                        name="img"
+                        placeholder="img..."
+                        className="inputLogin1"
+                    />
 
-                <button className="buttonLogin1">go</button>
-                {message ? ("id exist in system") : null}
-                {itemUp ? ("succes") : null}
+                    <button className="buttonLogin1">go</button>
+                    {message ? ("id exist in system") : null}
+                    {itemUp ? ("succes") : null}
 
 
-            </form>
-        </>)
+                </form>
+            </div>
+        )
+    }
 }

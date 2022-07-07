@@ -46,7 +46,8 @@ export default function Login() {
             else if (data.token) {
                 localStorage.token = data.token
                 console.log(data.token);
-                setUser({ email, password })
+                setUser({ email, password, admin: false })
+                console.log(user);
                 navigate(`/`)
 
 

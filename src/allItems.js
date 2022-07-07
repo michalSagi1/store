@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios"
+import UserContext from "../src/Context";
 
 
 export default function InputToken() {
+    const { user } = useContext(UserContext);
+
     const [tokenInput, setTokenInput] = useState();
     const [items, setItems] = useState();
 
@@ -36,6 +39,7 @@ export default function InputToken() {
 
     )
 
+    if (!user.admin) return "no admin"
     return (
 
         <>

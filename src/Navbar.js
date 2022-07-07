@@ -37,6 +37,10 @@ export default function Navbar() {
                                 <li class="nav-item">
                                     <Link to="/up" class="nav-link active" aria-current="page"> up item</Link>
                                 </li>) : null}
+                            {user ? (
+                                <li class="nav-item">
+                                    <Link to="/del" class="nav-link active" aria-current="page"> delete item</Link>
+                                </li>) : null}
 
                             <li class="nav-item">
                                 <button to="/" class="nav-link active" aria-current="page" onClick={() => setUser("")}>logout</button>
