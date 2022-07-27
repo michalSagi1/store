@@ -58,7 +58,8 @@ function Products() {
     useEffect(() => {
         async function category1() {
             // const url = `https://fakestoreapi.com/products/category/${category}`
-            const url = `http://localhost:3001/api/items/category/?category=${category}`
+            // const url = `http://localhost:3001/api/items/category/?category=${category}`
+            const url = `https://m-fake-store.herokuapp.com/api/items/category/?category=${category}`
 
             const res = await fetch(url);
             const data = await res.json();
@@ -108,7 +109,9 @@ function Product(props) {
         async function prodact() {
 
             // const url = `https://fakestoreapi.com/products/${id}`
-            const url = `http://localhost:3001/api/items/id/?id=${id}`
+            // const url = `http://localhost:3001/api/items/id/?id=${id}`
+            const url = `https://m-fake-store.herokuapp.com/api/items/id/?id=${id}`
+
 
 
             const res = await fetch(url);

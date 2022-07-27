@@ -35,7 +35,9 @@ export default function Login() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             };
-            const res = await fetch('http://localhost:3001/api/users/login', requestOptions)
+            // const res = await fetch('http://localhost:3001/api/users/login', requestOptions)
+            const res = await fetch('https://m-fake-store.herokuapp.com/api/users/login', requestOptions)
+
             const data = await res.json()
             if (data.admin) {
                 localStorage.token = data.token
@@ -75,7 +77,9 @@ export default function Login() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: userEmailRegister, password: userPassRegister, firstName: userNameRegister })
         };
-        const res = await fetch('http://localhost:3001/api/users/register', requestOptions)
+        // const res = await fetch('http://localhost:3001/api/users/register', requestOptions)
+        const res = await fetch('https://m-fake-store.herokuapp.com/api/users/register', requestOptions)
+
         const data = await res.json()
         console.log(data);
         if (data.message) {

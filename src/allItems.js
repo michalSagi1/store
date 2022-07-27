@@ -17,7 +17,9 @@ export default function AllItems() {
         //     e.preventDefault()
         //     console.log(tokenInput);
 
-        axios.get('http://localhost:3001/api/items/', {
+        // axios.get('http://localhost:3001/api/items/', {
+        axios.get('https://m-fake-store.herokuapp.com/api/items/', {
+
             headers: { 'Authorization': `Bearer ${localStorage.token}` },
 
 

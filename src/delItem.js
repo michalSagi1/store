@@ -40,7 +40,7 @@ export default function DelItem() {
 
             })
         };
-        const res = await fetch('http://localhost:3001/api/items/delItem', requestOptions)
+        const res = await fetch('https://m-fake-store.herokuapp.com/api/items/delItem', requestOptions)
         const data = await res.json()
         setItem(data)
         console.log(data);

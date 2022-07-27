@@ -49,7 +49,9 @@ export default function UpItem() {
 
             })
         };
-        const res = await fetch('http://localhost:3001/api/items/addItem', requestOptions)
+        // const res = await fetch('http://localhost:3001/api/items/addItem', requestOptions)
+        const res = await fetch('https://m-fake-store.herokuapp.com/api/items/addItem', requestOptions)
+
         const data = await res.json()
         setItem(data)
         console.log(data);
