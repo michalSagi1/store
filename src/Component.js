@@ -2,6 +2,9 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UpFile from './upFile';
+import AllItems from './allItems';
+import Loading from './loading';
 
 
 function Home() {
@@ -23,22 +26,27 @@ function Home() {
     }, [])
     console.log(category);
     if (loading) {
-        return <div>loading...</div>
+        return <Loading />
+
     }
 
 
 
     return (
-        <div className='home'>
-            {category.map(category =>
-                <NavLink to={`/${category}`} className="link"
+        <>
+            <div className='home'>
+                {category.map(category =>
+                    <NavLink to={`/${category}`} className="link"
 
-                >{category} </NavLink>
+                    >{category} </NavLink>
 
-            )}
+                )}
+
+                {/* <AllItems /> */}
 
 
-        </div>
+            </div>
+        </>
     )
 }
 
@@ -58,32 +66,36 @@ function Products() {
             setLoading(false)
         }
         category1()
-    }, [])
+    }, [category])
     if (loading) {
-        return <div>loading...</div>
+        return <Loading />
+
     }
 
     console.log(categorys);
 
     return (
-        <div className='products'>
+        <>
+            <Home />
+            <div className='products'>
 
-            {categorys.map(v => {
-                return (
-                    <div className='col-md-3 mb-3'>
-                        <div className='card h-100 text-center p-4'>
-                            <img src={v.img} className='card-img-top' height='270px' />
-                            <div className='card-body'>
-                                <h5 className='card-title mb-0'>{v.name.substring(0, 12)}... </h5>
-                                <p className='card-text lead fw-bold'>{v.price}$ </p>
+                {categorys.map(v => {
+                    return (
+                        <div className='col-md-3 mb-3'>
+                            <div className='card h-100 text-center p-4'>
+                                <img src={v.img} className='card-img-top' height='270px' />
+                                <div className='card-body'>
+                                    <h5 className='card-title mb-0'>{v.name.substring(0, 12)}... </h5>
+                                    <p className='card-text lead fw-bold'>{v.price}$ </p>
 
-                                < NavLink to={`/category/${v.id}`} className='btn btn-outline-dark'>Buy me</NavLink>
+                                    < NavLink to={`/category/${v.id}`} className='btn btn-outline-dark'>Buy me</NavLink>
+                                </div>
                             </div>
-                        </div>
-                    </div>)
-            })}
+                        </div>)
+                })}
 
-        </div>
+            </div>
+        </>
     )
 }
 function Product(props) {
@@ -108,24 +120,26 @@ function Product(props) {
     // console.log(prod);
 
     return (
-        <div className='product'>
+        <><Home />
+            <div className='product'>
 
-            <div className='col-md-6 container'>
-                <img src={prod.img} alt={prod.name} height={"300px"} width={"300px"} />
+                <div className='col-md-6 container'>
+                    <img src={prod.img} alt={prod.name} height={"300px"} width={"300px"} />
+                </div>
+                <div className='col-md-6 container' >
+
+                    <h3 className='display-6'>{prod.name}</h3>
+                    <h3 className='display-8 fw-bold my-4'> {prod.price}$</h3>
+                    <p className='lead'>{prod.description}</p>
+
+                    <button className='btn btn-outline-dark' onClick={() => { add(prod) }}>add to cart</button>
+                    {/* <button className='btn btn-outline-dark ms-2'>go to cart</button> */}
+
+                </div>
+
+
             </div>
-            <div className='col-md-6 container' >
-
-                <h3 className='display-6'>{prod.name}</h3>
-                <h3 className='display-8 fw-bold my-4'> {prod.price}$</h3>
-                <p className='lead'>{prod.description}</p>
-
-                <button className='btn btn-outline-dark' onClick={() => { add(prod) }}>add to cart</button>
-                {/* <button className='btn btn-outline-dark ms-2'>go to cart</button> */}
-
-            </div>
-
-
-        </div>
+        </>
 
     )
 }

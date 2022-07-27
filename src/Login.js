@@ -49,9 +49,6 @@ export default function Login() {
                 setUser({ email, password, admin: false })
                 console.log(user);
                 navigate(`/`)
-
-
-
             }
             else {
                 setErrorEnterDetailsLogin(true);
@@ -157,6 +154,7 @@ export default function Login() {
                             placeholder="Email"
                             className="inputLogin"
                             value={email}
+                            required
                             onChange={(e) => {
                                 setEmail(e.target.value);
                             }}
@@ -167,6 +165,7 @@ export default function Login() {
                             placeholder="Password"
                             className="inputLogin"
                             value={password}
+                            required
                             onChange={(e) => {
                                 setPassword(e.target.value);
                             }}

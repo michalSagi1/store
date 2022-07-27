@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios"
 import UserContext from "../src/Context";
+import { Home } from "./Component";
+import Loading from "./loading";
 
 
-export default function InputToken() {
+export default function AllItems() {
     const { user } = useContext(UserContext);
 
     const [tokenInput, setTokenInput] = useState();
@@ -39,10 +41,12 @@ export default function InputToken() {
 
     )
 
-    if (!user.admin) return "no admin"
+    // if (!user.admin) return "no admin"
     return (
 
         <>
+            {/* <Loading /> */}
+            <Home />
             {/* <form onSubmit={token}>
                 <label htmlFor="input" aria-hidden="true">
                     token
@@ -64,7 +68,7 @@ export default function InputToken() {
                 {items?.map(v => {
                     return (
                         <div className='col-md-3 mb-3'>
-                            <div className='card h-100 text-center p-4'>
+                            <div className='card h-100 text-center p-2'>
                                 <img src={v.img} className='card-img-top' height='270px' />
                                 <div className='card-body'>
                                     <h5 className='card-title mb-0'>{v.name.substring(0, 12)}... </h5>

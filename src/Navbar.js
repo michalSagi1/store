@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 import UserContext from "../src/Context";
 
 
-export default function Navbar() {
+export default function Navbar(props) {
+    const { setCartItems } = props;
+
     const { user, setUser } = useContext(UserContext);
     console.log(user);
+
+
+
+
 
 
     return (
@@ -32,6 +38,10 @@ export default function Navbar() {
                                 <li class="nav-item">
                                     <Link to="/allItems" class="nav-link active" aria-current="page"> all items</Link>
                                 </li>) : null}
+                            {/* {user ? (
+                                <li class="nav-item">
+                                    <Link to="/upfile" class="nav-link active" aria-current="page"> upFile</Link>
+                                </li>) : null} */}
 
                             {user ? (
                                 <li class="nav-item">
@@ -42,16 +52,20 @@ export default function Navbar() {
                                     <Link to="/del" class="nav-link active" aria-current="page"> delete item</Link>
                                 </li>) : null}
 
-                            <li class="nav-item">
-                                <button to="/" class="nav-link active" aria-current="page" onClick={() => setUser("")}>logout</button>
-                            </li>
+                            {/* <li class="nav-item">
+                                <button to="/" class="nav-link active" aria-current="page" onClick={() => { setCartItems([]); setUser(""); localStorage.clear() }}>logout</button>
+                            </li> */}
 
 
                         </ul>
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        {/* <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            />
                             <button class="btn btn-outline-dark" type="submit">Search</button>
-                        </form>
+                        </form> */}
+                        <span class="nav-item">
+                            <button to="/" class="nav-link active" aria-current="page" onClick={() => { setCartItems([]); setUser(""); localStorage.clear() }}>logout</button>
+                        </span>
                     </div>
                 </div>
             </nav>

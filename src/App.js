@@ -4,12 +4,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home, Products, Product, Error, Cart } from './Component';
 import Navbar from './Navbar';
 import Login from "./Login";
-import InputToken from "./allItems";
+import AllItems from "./allItems";
 import UpItem from './UpItem';
 import UserContext from "../src/Context";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import DelItem from './delItem';
+import Form from './upFile1';
 
 function App() {
   const [user, setUser] = useState();
@@ -45,7 +46,7 @@ function App() {
 
 
       <div className="App">
-        <Navbar />
+        <Navbar setCartItems={setCartItems} />
         <Routes>
           {!user ? (
 
@@ -58,12 +59,14 @@ function App() {
           ) : (
             <>
               <Route path="*" element={<Navigate to="/login" />} />
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
+              <Route path="/" element={<AllItems />} />
 
 
               <Route path="/up" element={<UpItem />} />
-              <Route path="/allItems" element={<InputToken />} />
+              <Route path="/allItems" element={<AllItems />} />
               <Route path="/del" element={<DelItem />} />
+              <Route path='upfile' element={<Form />} />
 
 
 
@@ -76,7 +79,9 @@ function App() {
           )}
         </Routes>
         {user ? (
-          <Cart cartItems={cartItems} add={add} remove={remove} />
+          <>
+            <Cart cartItems={cartItems} add={add} remove={remove} />
+          </>
         ) : null}
 
 
